@@ -62,6 +62,12 @@ class MessagesViewController: JSQMessagesViewController {
 
         messageObserver = chat.subscribeToMessages(in: userConversation.conversation, handler: { (event, message) in
             print("Received message event")
+            if event == SKYChatRecordChangeEvent.create && !self.messages.contains(message) && message.creatorUserRecordID != SKYContainer.default().currentUserRecordID
+            {
+                self.messages.append(message)
+                self.reloadViews()
+                self.finishReceivingMessage(animated: true)
+            }
         })
         typingObserver = chat.subscribeToTypingIndicator(in: userConversation.conversation, handler: { (indicator) in
             print("Receiving typing event")
@@ -136,6 +142,7 @@ class MessagesViewController: JSQMessagesViewController {
 
                                 if let messages = messages {
                                     self.messages = messages.reversed()
+                                    self.finishReceivingMessage(animated: false)
                                     self.reloadViews()
                                 }
         })
