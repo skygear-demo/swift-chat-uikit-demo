@@ -3,6 +3,7 @@ This is a tutorial for intermediate iOS developer for adopting the Skygear Chat 
 
 The use of this tutorial:
 - We have commented all the Skygear related code and marked the number in the code. Please clone the whole project and follow the numbers to understand the `SKYKit` and `SKYChatKit`. 
+- To start with, please clone the project from [here](https://github.com/skygear-demo/swift-chat-demo/tutorial)
 - The convered feature in this tutorial includes:
     - [Configuration of Skygear](#part-1-configuration-of-skygear)
     - [Basic Usage of `SKYKit` & `SKYChatKit`](#part-2-basic-usage-of-skykit-and-skychatkit)
