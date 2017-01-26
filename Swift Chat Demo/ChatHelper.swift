@@ -21,6 +21,7 @@ class ChatHelper: NSObject {
 
     override init() {
         super.init()
+        /* MARK: Part 14.2
         NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainerDidChangeCurrentUser,
                                                object: nil,
                                                queue: OperationQueue.main) { (note) in
@@ -29,6 +30,7 @@ class ChatHelper: NSObject {
                                                 })
                                                 self.userRecords = [:]
         }
+        */
     }
 
     var isLoggedIn: Bool {

@@ -17,13 +17,13 @@ class UsersViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        /* MARK: Part 14.3
         NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainerDidChangeCurrentUser,
                                                object: nil,
                                                queue: OperationQueue.main) { (note) in
                                                 self.clearAllUserRecords()
         }
-
+        */
         self.updateUserRecords()
     }
 
