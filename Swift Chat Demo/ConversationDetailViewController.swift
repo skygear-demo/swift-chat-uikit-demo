@@ -8,7 +8,7 @@
 
 import UIKit
 import SKYKit
-import MBProgressHUD
+import SVProgressHUD
 
 protocol ConversationDetailViewControllerDelegate {
     func conversationDetailViewController(didCancel viewController: ConversationDetailViewController)
@@ -83,10 +83,10 @@ class ConversationDetailViewController: UITableViewController {
             return
         }
 
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        SVProgressHUD.show()
         let chat = SKYContainer.default().chatExtension!
         chat.leave(conversationID: conversationID!) { (error) in
-            hud.hide(animated: true)
+            SVProgressHUD.dismiss()
             if error != nil {
                 let alert = UIAlertController(title: "Unable to Leave Conversation",
                                               message: error!.localizedDescription,

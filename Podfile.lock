@@ -5,47 +5,39 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - MBProgressHUD (1.0.0)
-  - SKYKit (0.19.0):
-    - SKYKit/Core (= 0.19.0)
-  - SKYKit/Core (0.19.0):
+  - SKYKit (0.21.0):
+    - SKYKit/Core (= 0.21.0)
+  - SKYKit/Core (0.21.0):
     - FMDB (~> 2.5)
     - SocketRocket (~> 0.4)
-  - SKYKitChat (0.0.1):
-    - SKYKit (~> 0.19.0)
+  - SKYKitChat (0.0.2):
+    - SKYKitChat/Core (= 0.0.2)
+  - SKYKitChat/Core (0.0.2):
+    - SKYKit/Core (~> 0.21.0)
+  - SKYKitChat/UI (0.0.2):
+    - JSQMessagesViewController (~> 7.3.0)
+    - SKYKit/Core (~> 0.21.0)
+    - SKYKitChat/Core
+    - SVProgressHUD (~> 2.1.0)
   - SocketRocket (0.5.1)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - JSQMessagesViewController (~> 7.3.4)
-  - MBProgressHUD (~> 1.0.0)
-  - SKYKit (from `https://github.com/SkygearIO/skygear-SDK-iOS.git`, commit `4516b15`)
-  - SKYKitChat (from `https://github.com/SkygearIO/chat-SDK-iOS.git`, commit `08235f2`)
-
-EXTERNAL SOURCES:
-  SKYKit:
-    :commit: 4516b15
-    :git: https://github.com/SkygearIO/skygear-SDK-iOS.git
-  SKYKitChat:
-    :commit: 08235f2
-    :git: https://github.com/SkygearIO/chat-SDK-iOS.git
-
-CHECKOUT OPTIONS:
-  SKYKit:
-    :commit: 4516b15
-    :git: https://github.com/SkygearIO/skygear-SDK-iOS.git
-  SKYKitChat:
-    :commit: 08235f2
-    :git: https://github.com/SkygearIO/chat-SDK-iOS.git
+  - SKYKit (~> 0.21.0)
+  - SKYKitChat (~> 0.0.2)
+  - SKYKitChat/UI (~> 0.0.2)
+  - SVProgressHUD (~> 2.1.0)
 
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  SKYKit: 14d7ffed0350e0ca95aa60c76f2aaa5d7bbb24d2
-  SKYKitChat: 669b20e648e211bdc3bbbbf8f52edcf5f9ef7f9e
+  SKYKit: 189ca397d45c08d9559d744c2ac0640a13b41072
+  SKYKitChat: 0ac860a968b2ccac672abd8933e4d52e05b942fb
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: a9d78a33b59ea04ad91278b5fd974f9a0e8b38e4
+PODFILE CHECKSUM: 89d46a17dfac50d07c75a48e843bca71170c898b
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0

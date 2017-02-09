@@ -10,7 +10,7 @@ import UIKit
 import SKYKit
 import SKYKitChat
 import JSQMessagesViewController
-import MBProgressHUD
+import SVProgressHUD
 
 class ConversationsViewController: UITableViewController, ConversationDetailViewControllerDelegate {
 
@@ -110,12 +110,12 @@ class ConversationsViewController: UITableViewController, ConversationDetailView
         let participantIDs = viewController.participantIDs
         let title = ChatHelper.shared.generateConversationDefaultTitle(participantIDs: participantIDs,
                                                                        includeCurrentUserName: true)
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        SVProgressHUD.show()
         chat?.createConversation(participantIDs: viewController.participantIDs,
                                  title: title,
                                  metadata: nil,
                                  completion: { (userConversation, error) in
-                                    hud.hide(animated: true)
+                                    SVProgressHUD.dismiss()
                                     if error != nil {
                                         let alert = UIAlertController(title: "Unable to Create",
                                                           message: error!.localizedDescription,

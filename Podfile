@@ -7,9 +7,10 @@ target 'Swift Chat Demo' do
 
   # Pods for Swift Chat Demo
   pod 'JSQMessagesViewController', '~> 7.3.4'
-  pod 'MBProgressHUD', '~> 1.0.0'
+  pod 'SVProgressHUD', '~> 2.1.0'
 
-  pod 'SKYKit', :git => 'https://github.com/SkygearIO/skygear-SDK-iOS.git', :commit => '4516b15'
-  pod 'SKYKitChat', :git => 'https://github.com/SkygearIO/chat-SDK-iOS.git', :commit => '08235f2'
+  pod 'SKYKit', '~> 0.21.0'
+  pod 'SKYKitChat', '~> 0.0.2'
+  pod 'SKYKitChat/UI', '~> 0.0.2'
 
 end

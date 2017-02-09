@@ -10,7 +10,6 @@ import UIKit
 import SKYKit
 import SKYKitChat
 import JSQMessagesViewController
-import MBProgressHUD
 
 class MessagesViewController: JSQMessagesViewController {
 
