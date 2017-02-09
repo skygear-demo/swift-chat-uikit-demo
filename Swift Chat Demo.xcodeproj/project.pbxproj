@@ -20,12 +20,12 @@
 		38BA24E71DED899600DFD045 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24E61DED899600DFD045 /* ConversationsViewController.swift */; };
 		38BA24E91DED923900DFD045 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24E81DED923900DFD045 /* MessagesViewController.swift */; };
 		38BA24ED1DEFD7C100DFD045 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24EC1DEFD7C100DFD045 /* UsersViewController.swift */; };
-		38BA24F11DEFEDA200DFD045 /* DirectConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24F01DEFEDA200DFD045 /* DirectConversationsViewController.swift */; };
 		38BA24F31DEFFF3900DFD045 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24F21DEFFF3900DFD045 /* LoginViewController.swift */; };
 		38BA24F51DF004A500DFD045 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24F41DF004A500DFD045 /* RootViewController.swift */; };
 		38BA24F71DF0055500DFD045 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24F61DF0055500DFD045 /* SettingsViewController.swift */; };
 		38C1CB311DF01FAC00F8B1BB /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C1CB301DF01FAC00F8B1BB /* ChangeNameViewController.swift */; };
 		38C1CB331DF02FF700F8B1BB /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C1CB321DF02FF700F8B1BB /* ChatHelper.swift */; };
+		6062D6E11E4B280A003F6404 /* UserQueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6062D6E01E4B280A003F6404 /* UserQueryViewController.swift */; };
 		CF6D32D0E7EA01C8282C4D82 /* Pods_Swift_Chat_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C92898DC56E7AA645A2352 /* Pods_Swift_Chat_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,12 +46,12 @@
 		38BA24E61DED899600DFD045 /* ConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		38BA24E81DED923900DFD045 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		38BA24EC1DEFD7C100DFD045 /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
-		38BA24F01DEFEDA200DFD045 /* DirectConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectConversationsViewController.swift; sourceTree = "<group>"; };
 		38BA24F21DEFFF3900DFD045 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		38BA24F41DF004A500DFD045 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		38BA24F61DF0055500DFD045 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		38C1CB301DF01FAC00F8B1BB /* ChangeNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		38C1CB321DF02FF700F8B1BB /* ChatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
+		6062D6E01E4B280A003F6404 /* UserQueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserQueryViewController.swift; sourceTree = "<group>"; };
 		93397D50AF00ED6AB730384E /* Pods-Swift Chat Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift Chat Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift Chat Demo/Pods-Swift Chat Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C67621912B68E73BFA9DF7A7 /* Pods-Swift Chat Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift Chat Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift Chat Demo/Pods-Swift Chat Demo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,7 +99,6 @@
 				38BA24E61DED899600DFD045 /* ConversationsViewController.swift */,
 				38BA24E81DED923900DFD045 /* MessagesViewController.swift */,
 				38BA24EC1DEFD7C100DFD045 /* UsersViewController.swift */,
-				38BA24F01DEFEDA200DFD045 /* DirectConversationsViewController.swift */,
 				38BA24F21DEFFF3900DFD045 /* LoginViewController.swift */,
 				38BA24F41DF004A500DFD045 /* RootViewController.swift */,
 				38BA24F61DF0055500DFD045 /* SettingsViewController.swift */,
@@ -109,6 +108,7 @@
 				3890F1D51DF10F6300C5212F /* ConversationDetailViewController.swift */,
 				3890F1D71DF1198700C5212F /* SearchUserHelper.swift */,
 				3890F1D91DF121A700C5212F /* SKYRecordExtension.swift */,
+				6062D6E01E4B280A003F6404 /* UserQueryViewController.swift */,
 			);
 			path = "Swift Chat Demo";
 			sourceTree = "<group>";
@@ -253,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6062D6E11E4B280A003F6404 /* UserQueryViewController.swift in Sources */,
 				38BA24F51DF004A500DFD045 /* RootViewController.swift in Sources */,
 				3890F1DA1DF121A700C5212F /* SKYRecordExtension.swift in Sources */,
 				38BA24F31DEFFF3900DFD045 /* LoginViewController.swift in Sources */,
@@ -261,7 +262,6 @@
 				38BA24E91DED923900DFD045 /* MessagesViewController.swift in Sources */,
 				38BA24D51DED802F00DFD045 /* SecondViewController.swift in Sources */,
 				3890F1D81DF1198700C5212F /* SearchUserHelper.swift in Sources */,
-				38BA24F11DEFEDA200DFD045 /* DirectConversationsViewController.swift in Sources */,
 				3890F1D21DF05F2B00C5212F /* SKYConversationExtension.swift in Sources */,
 				38C1CB311DF01FAC00F8B1BB /* ChangeNameViewController.swift in Sources */,
 				38BA24D11DED802F00DFD045 /* AppDelegate.swift in Sources */,
