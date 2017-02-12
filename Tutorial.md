@@ -58,7 +58,7 @@ When you see `container` or `chat` later in this tutorial, if not specify, they 
 ## Part 3 - Find Users
 The user record can be found by querying the `SKYContainer`. By the method `queryUsers(byUsernames: [String]!, completionHandler: (([SKYRecord]?, Error?) -> Void)!)` provided in the `SKYContainer`, we can get the `SKYRecord` of the provided usernames.
 
-Part 3.1 (In `SearchUserHelper.swift`)
+Part 3.1 (Add to `SearchUserHelper.swift` Line 34)
 ```swift
 container.queryUsers(byUsernames: [username]) { (records, err) in
     if let error = err {
@@ -100,7 +100,7 @@ We can use `addMessage(message: SKYMessage, to: SKYConversation, completion:  SK
 - fail (`bool`)
 - conversationStatus (`SKYMessageConversationStatus`)
 
-Part 4.1 (In `MessagesViewController.swift`)
+Part 4.1 (Add to `MessagesViewController.swift` Line 210)
 ```swift
 // We need to firstly create a SKYMessage object with body, creatorUserRecordID.
 let message = SKYMessage()!
@@ -117,6 +117,8 @@ chat.addMessage(message, to: (conversation?.conversation)!, completion: { (msg, 
         self.collectionView.reloadData()
     }
 })
+self.messages.append(message)
+self.finishSendingMessage(animated: true)
 ```
 
 ## Part 5 - Create Direct Chat or Group Chat
@@ -125,7 +127,7 @@ In `SKYChatKit`, we use `SKYConversation` to create conversation.
 There are two location in the tutorial app that is creating the conversation. The first one is in the `DirectConversationsViewController.swift`. (Marked as Part 5.1)
 
 ### Direct Chat
-Part 5.1 (In `DirectConversationsViewController.swift`)
+Part 5.1 (Add to `DirectConversationsViewController.swift` Line 33)
 ```swift
 chat.createDirectConversation(userID: userRecord.recordID.recordName,
                               title: "",
@@ -149,7 +151,7 @@ If you would like to create a conversation with multiple userIDs, you may try to
 
 You may see the usage in `ConversationsViewController.swift`
 
-Part 5.2 (In `ConversationsViewController.swift`)
+Part 5.2 (Add to `ConversationsViewController.swift` Line 84)
 ```swift
 chat?.createConversation(participantIDs: viewController.participantIDs,
                          title: title,
@@ -177,7 +179,7 @@ chat?.createConversation(participantIDs: viewController.participantIDs,
 ## Part 6 - Leave a conversation
 The function `leave(conversationID: String, completion: ((Error?) -> Void)?)` can be used for leaving a conversation by its ID. 
 
-Part 6.1 (In `ConvserationDetailViewController.swift`)
+Part 6.1 (Add to `ConvserationDetailViewController.swift` Line 88)
 ```swift
 chat.leave(conversationID: conversationID!) { (error) in
     hud.hide(animated: true)
@@ -199,7 +201,7 @@ You may also use another function `leave(conversation: SKYConversation, completi
 ## Part 7 - Trigger a typing event
 The `SKYChatKit` provide a function for sending the typing indicator to the conversation participants. The users in the convseration can know who is now typing.
 
-Part 7.1 (In `MessagesViewController.swift`)
+Part 7.1 (Add to `MessagesViewController.swift` Line 126)
 ```swift
 func triggerTypingEvent(_ event: SKYChatTypingEvent) {
     if event == lastTypingEvent {
@@ -220,6 +222,20 @@ func triggerTypingEvent(_ event: SKYChatTypingEvent) {
 
 The function `sendTypingIndicator(typingEvent: SKYChatTypingEvent, in:SKYConversation)` is called for sending out the different typing event.
 
+Part 7.2 - Call the `triggerTypingEvent()` in respective location.
+`MessageViewController.swift` Line 210:
+```swift
+triggerTypingEvent(.begin)
+```
+`MessageViewController.swift` Line 215:
+```swift
+triggerTypingEvent(.pause)
+```
+`MessageViewController.swift` Line 243:
+```swift
+triggerTypingEvent(.finished)
+```
+
 The `SKYChatTypingEvent` includes:
 - begin
 - pause
@@ -227,7 +243,7 @@ The `SKYChatTypingEvent` includes:
 
 ## Part 8 - Subscribe to new message
 
-Part 8.1 (In `MessagesViewController.swift`)
+Part 8.1 (Add to `MessagesViewController.swift` Line 62)
 ```swift
 messageObserver = chat.subscribeToMessages(in: userConversation.conversation, handler: { (event, message) in
     print("Received message event")
@@ -256,10 +272,9 @@ messageObserver = chat.subscribeToMessages(in: userConversation.conversation, ha
 
 Only when the change event is create, the array of messages does not contain that message and that is not a sent message, the messages array will be appended and reload the view to show the latest message.
 
-
 ## Part 9 - Subscribe to Typing Indicator
 
-Part 9.1 (In `MessagesViewController.swift`)
+Part 9.1 (Add to `MessagesViewController.swift` under Line 70)
 ```swift
 typingObserver = chat.subscribeToTypingIndicator(in: userConversation.conversation, handler: { (indicator) in
     print("Receiving typing event")
@@ -269,7 +284,7 @@ typingObserver = chat.subscribeToTypingIndicator(in: userConversation.conversati
 
 Function `subscribeToTypingIndicator (in: SKYUserConversation, handler: (SKYChatTypingIndicator) -> Void)` will receive every typing events in the conversation. 
 
-Part 9.2 (In `MessagesViewController.swift`)
+Part 9.2 (Add to `MessagesViewController.swift` Line 93)
 ```swift
 let typingUserIDs = indicator.typingUserIDs
 if typingUserIDs.count == 0 {
@@ -300,25 +315,34 @@ We can fetch all the conversations that the user is involving by function of `SK
 fetchUserConversations(completion:SKYChatFetchUserConversationListCompletion?)
 ```
 
-Part 10.1 (In `ConversationsViewController.swift`)
+Part 10.1 (Add to `ConversationsViewController.swift` Line 40)
 ```swift
-chat?.fetchUserConversations { (conversations, error) in
-    // We fetched all the conversation of the current user in conversations
-    if let err = error {
-        let alert = UIAlertController(title: "Unable to load conversations", message: err.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-        self.present(alert, animated: true, completion: nil)
-        return
-    }
+func fetchUserConversations(completion: (() -> Void)?) {
+    chat?.fetchUserConversations { (conversations, error) in
+        if let err = error {
+            let alert = UIAlertController(title: "Unable to load conversations", message: err.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
 
-    if let fetchedConversations = conversations {
-        print("Fetched \(fetchedConversations.count) user conversations.")
-        self.conversations = fetchedConversations
-    }
+        if let fetchedConversations = conversations {
+            print("Fetched \(fetchedConversations.count) user conversations.")
+            self.conversations = fetchedConversations
+        }
 
-    self.tableView.reloadData()
-    completion?()
+        self.tableView.reloadData()
+        completion?()
+    }
 }
 ```
+And call the function in `viewDidLoad()` and `refreshControlerDidRefresh()`:
+Part 10.2 (Add to `ConversationsViewController.swift` Line 22)
+```swift
+fetchUserConversations(completion: nil)
+```
+Part 10.3 (Add to `ConversationsViewController.swift` Line 86
+
+
 
 There is two more methods to fetch the user conversation ([Documentation](http://cocoadocs.org/docsets/SKYKitChat/0.0.1/Classes/SKYChatExtension.html#//api/name/fetchUserConversationWithConversationID:completion:NS_SWIFT_NAME:)):
 - `fetchUserConversation(conversationID: String, completion: SKYChatUserConversationCompletion?)`
@@ -332,7 +356,7 @@ let userconversation: SKYUserConversation? = nil
 userconversation.conversation.participantIds
 ```
 
-Part 11.1 (In `MessagesViewController.swift`)
+Part 11.1 (Add to `MessagesViewController.swift` Line 138)
 ```swift
 
 for recordName in (conversation?.conversation.participantIds)! {
@@ -344,7 +368,7 @@ We will get to record ids of the participant users into the `userRecordIDs`.
 
 To get the user record by the ids, we need to fetch the record from the Cloud Database. 
 
-Part 11.2 (In` MessagesViewController.swift`)
+Part 11.2 (Add to ` MessagesViewController.swift` Line 142)
 ```swift
 db?.fetchRecords(withIDs: userRecordIDs,
                  completionHandler: { (usermap, err) in
@@ -366,13 +390,21 @@ db?.fetchRecords(withIDs: userRecordIDs,
 After this operation, we should have mapped the user id with the `SKYRecord`.
 
 ## Part 12 - Unread Count
-Part 12.1 (In `ConversationsViewController.swift`)
+Part 12.1 (Add to `ConversationsViewController.swift` under Line 49)
 ```swift
-chat?.fetchTotalUnreadCount(completion: { (dict, error) in
-    if let unreadMessages = dict?["message"]?.intValue {
-        self.navigationController?.tabBarItem.badgeValue = unreadMessages > 0 ? String(unreadMessages) : nil
-    }
-})
+func fetchTotalUnreadCount() {
+    chat?.fetchTotalUnreadCount(completion: { (dict, error) in
+        if let unreadMessages = dict?["message"]?.intValue {
+            self.navigationController?.tabBarItem.badgeValue = unreadMessages > 0 ? String(unreadMessages) : nil
+        }
+    })
+}
+```
+
+And call the function `fetchTotalUnreadCount()` in `viewDidLoad`
+Part 12.2 (Add to `ConversationsViewController.swift` under Line 22)
+```swift
+fetchTotalUnreadCount()
 ```
 
 The function `fetchTotalUnreadCount(completion:SKYChatUnreadCOuntCOmpletion?)` can fetch the unread count in all conversations.
@@ -384,7 +416,7 @@ We can fetch the messages of a particular `SKYConversation` by the function `fet
 
 You may have the limit of the messages to retrieve (`limit: Int`)and the time limit for the messages (`beforeTime: Data?`).
 
-Part 13.1 (In `MessagesViewController.swift`)
+Part 13.1 (Add to `MessagesViewController.swift` Line 129)
 ```swift
 chat.fetchMessages(conversation: conversation.conversation,
                     limit: 100,
@@ -416,7 +448,7 @@ There is serveral `NSNotification.Name` extentions from SKYKit, including:
 
 In `RootViewController`, we want to keep track of the change of current user. If the current user is changed, we need to present the `LoginViewController` for signing up or logging in.
 
-Part 14.1 (In `RootViewController.swift`)
+Part 14.1 (Add to `RootViewController.swift` Line 20)
 ```swift
 NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainerDidChangeCurrentUser,
                                        object: nil,
@@ -424,13 +456,12 @@ NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainer
                                         if !self.helper.isLoggedIn && !self.loginViewControllerPresenting {
                                             self.presentLoginViewController(animated: true)
                                         }
-
 }
 ```
 
 In `ChatHelper`, we also want to keep track of the change of current user. The fetching of current user record will be done and clear the current user records when we received any notification on the current user.
 
-Part 14.2 (In `ChatHelper.swift`)
+Part 14.2 (Add to `ChatHelper.swift` Line 24)
 ```swift
 NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainerDidChangeCurrentUser,
                                        object: nil,
@@ -444,7 +475,7 @@ NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainer
 
 Similiar operation is also done in `UsersViewController`.
 
-Part 14.3 (In `UsersViewController.swift`) 
+Part 14.3 (Add to `UsersViewController.swift` under Line 19) 
 ```swift
 NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainerDidChangeCurrentUser,
                                        object: nil,
