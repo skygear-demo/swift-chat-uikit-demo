@@ -7,6 +7,7 @@
 //
 
 import SKYKitChat
+import SVProgressHUD
 
 let ShowConversationDetailSegueIdentifier: String = "ShowConversationDetail"
 
@@ -34,9 +35,10 @@ class ConversationViewController: SKYChatConversationViewController {
         switch segueID {
         case ShowConversationDetailSegueIdentifier:
             if let vc = segue.destination as? ConversationDetailViewController {
-                vc.adminIDs = self.conversation!.adminIds
-                vc.participantIDs = self.conversation!.participantIds
-                vc.conversationID = self.conversation!.recordID.recordName
+                vc.conversation = self.conversation
+                vc.delegate = self
+                vc.allowEditing =
+                    self.conversation!.adminIds.contains(self.skygear.currentUserRecordID)
                 vc.allowAddingParticipants = !(self.conversation!.isDistinctByParticipants)
             }
         default:
@@ -60,5 +62,56 @@ extension ConversationViewController: SKYChatConversationViewControllerDelegate 
                                     didFetchedParticipants participants: [SKYRecord]) {
 
         ChatHelper.shared.cacheUserRecords(participants)
+    }
+}
+
+extension ConversationViewController: ConversationDetailViewControllerDelegate {
+    func conversationDetailViewController(
+        didFinish viewController: ConversationDetailViewController) {
+
+        guard let nc = self.navigationController else {
+            return
+        }
+
+        guard let detailsVC = nc.topViewController as? ConversationDetailViewController else {
+            return
+        }
+
+        nc.popViewController(animated: true)
+
+        if detailsVC.edited {
+            // update the conversation
+
+            self.conversation?.title = detailsVC.conversationTitle
+            self.conversation?.adminIds = detailsVC.adminIDs
+            self.conversation?.participantIds = detailsVC.participantIDs
+
+            SVProgressHUD.showInfo(
+                withStatus: NSLocalizedString("Updating conversation...",
+                                              comment: "")
+            )
+            self.skygear.chatExtension?.saveConversation(
+                self.conversation!, completion: { (result, err) in
+                    SVProgressHUD.dismiss()
+
+                    guard err == nil else {
+                        SVProgressHUD.showError(withStatus: err!.localizedDescription)
+                        return
+                    }
+
+                    guard let conv = result else {
+                        SVProgressHUD.showError(
+                            withStatus: NSLocalizedString("Failed to update conversation",
+                                                          comment: "")
+                        )
+
+                        return
+                    }
+
+                    self.conversation = conv
+                }
+            )
+
+        }
     }
 }

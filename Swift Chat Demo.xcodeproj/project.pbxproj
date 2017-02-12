@@ -23,6 +23,7 @@
 		38BA24F71DF0055500DFD045 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BA24F61DF0055500DFD045 /* SettingsViewController.swift */; };
 		38C1CB311DF01FAC00F8B1BB /* ChangeNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C1CB301DF01FAC00F8B1BB /* ChangeNameViewController.swift */; };
 		38C1CB331DF02FF700F8B1BB /* ChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C1CB321DF02FF700F8B1BB /* ChatHelper.swift */; };
+		601E7FFD1E4DAB9500AC5928 /* ConversationDetailsEditTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601E7FFC1E4DAB9500AC5928 /* ConversationDetailsEditTitleTableViewCell.swift */; };
 		6062D6E11E4B280A003F6404 /* UserQueryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6062D6E01E4B280A003F6404 /* UserQueryViewController.swift */; };
 		6062D6E41E4C67B3003F6404 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6062D6E31E4C67B3003F6404 /* ConversationViewController.swift */; };
 		6062D6E61E4C7C54003F6404 /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6062D6E51E4C7C54003F6404 /* ConversationListViewController.swift */; };
@@ -49,6 +50,7 @@
 		38BA24F61DF0055500DFD045 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		38C1CB301DF01FAC00F8B1BB /* ChangeNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeNameViewController.swift; sourceTree = "<group>"; };
 		38C1CB321DF02FF700F8B1BB /* ChatHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatHelper.swift; sourceTree = "<group>"; };
+		601E7FFC1E4DAB9500AC5928 /* ConversationDetailsEditTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationDetailsEditTitleTableViewCell.swift; sourceTree = "<group>"; };
 		6062D6E01E4B280A003F6404 /* UserQueryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserQueryViewController.swift; sourceTree = "<group>"; };
 		6062D6E31E4C67B3003F6404 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		6062D6E51E4C7C54003F6404 /* ConversationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				38BA24D01DED802F00DFD045 /* AppDelegate.swift */,
 				38C1CB301DF01FAC00F8B1BB /* ChangeNameViewController.swift */,
 				38C1CB321DF02FF700F8B1BB /* ChatHelper.swift */,
+				601E7FFC1E4DAB9500AC5928 /* ConversationDetailsEditTitleTableViewCell.swift */,
 				3890F1D51DF10F6300C5212F /* ConversationDetailViewController.swift */,
 				6062D6E51E4C7C54003F6404 /* ConversationListViewController.swift */,
 				6062D6E31E4C67B3003F6404 /* ConversationViewController.swift */,
@@ -265,6 +268,7 @@
 				6062D6E41E4C67B3003F6404 /* ConversationViewController.swift in Sources */,
 				38C1CB311DF01FAC00F8B1BB /* ChangeNameViewController.swift in Sources */,
 				38BA24D11DED802F00DFD045 /* AppDelegate.swift in Sources */,
+				601E7FFD1E4DAB9500AC5928 /* ConversationDetailsEditTitleTableViewCell.swift in Sources */,
 				38BA24ED1DEFD7C100DFD045 /* UsersViewController.swift in Sources */,
 				38BA24D31DED802F00DFD045 /* FirstViewController.swift in Sources */,
 				6062D6E61E4C7C54003F6404 /* ConversationListViewController.swift in Sources */,

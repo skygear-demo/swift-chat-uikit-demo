@@ -15,7 +15,11 @@ extension SKYRecord {
             return nil
         }
 
-        return self.value(forKey: "name") as! String?
+        guard let name = self.value(forKey: "name") as? String else {
+            return nil
+        }
+
+        return name
     }
 
     var chat_versatileNameOfUserRecord: String? {

@@ -50,7 +50,7 @@ class ConversationListViewController: SKYChatConversationListViewController {
                 vc.participantIDs = [self.skygear.currentUserRecordID]
                 vc.adminIDs = [self.skygear.currentUserRecordID]
                 vc.allowLeaving = false
-                vc.showDismissalControls = true
+                vc.showCancelButton = true
                 vc.delegate = self
             }
         default:
@@ -110,15 +110,14 @@ extension ConversationListViewController: ConversationDetailViewControllerDelega
     func conversationDetailViewController(didFinish viewController: ConversationDetailViewController) {
         self.dismiss(animated: true, completion: nil)
 
+        let conversationTitle = viewController.conversationTitle
         let participantIDs = viewController.participantIDs
         let adminIDs = viewController.adminIDs
-
-        // TODO: Handle conversation title here
 
         SVProgressHUD.show()
         self.skygear.chatExtension?.createConversation(
             participantIDs: participantIDs,
-            title: nil,
+            title: conversationTitle,
             metadata: nil,
             adminIDs: adminIDs,
             distinctByParticipants: false,
