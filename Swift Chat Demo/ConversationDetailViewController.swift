@@ -85,6 +85,8 @@ class ConversationDetailViewController: UITableViewController {
 
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         let chat = SKYContainer.default().chatExtension!
+        
+        /* MARK: Part 6.1
         chat.leave(conversationID: conversationID!) { (error) in
             hud.hide(animated: true)
             if error != nil {
@@ -98,6 +100,7 @@ class ConversationDetailViewController: UITableViewController {
 
             let _ = self.navigationController?.popToRootViewController(animated: true)
         }
+        */
 
     }
 

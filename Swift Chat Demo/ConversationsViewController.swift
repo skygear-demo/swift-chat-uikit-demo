@@ -40,14 +40,18 @@ class ConversationsViewController: UITableViewController, ConversationDetailView
     }
 
     func fetchTotalUnreadCount() {
+
+        /* MARK: Part 12.1
         chat?.fetchTotalUnreadCount(completion: { (dict, error) in
             if let unreadMessages = dict?["message"]?.intValue {
                 self.navigationController?.tabBarItem.badgeValue = unreadMessages > 0 ? String(unreadMessages) : nil
             }
         })
+        */
     }
 
     func fetchUserConversations(completion: (() -> Void)?) {
+        /* MARK: Part 10.1
         chat?.fetchUserConversations { (conversations, error) in
             if let err = error {
                 let alert = UIAlertController(title: "Unable to load conversations", message: err.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
@@ -63,6 +67,7 @@ class ConversationsViewController: UITableViewController, ConversationDetailView
             self.tableView.reloadData()
             completion?()
         }
+        */
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,6 +116,7 @@ class ConversationsViewController: UITableViewController, ConversationDetailView
         let title = ChatHelper.shared.generateConversationDefaultTitle(participantIDs: participantIDs,
                                                                        includeCurrentUserName: true)
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        /* MARK: Part 5.2
         chat?.createConversation(participantIDs: viewController.participantIDs,
                                  title: title,
                                  metadata: nil,
@@ -132,6 +138,7 @@ class ConversationsViewController: UITableViewController, ConversationDetailView
                                     self.performSegue(withIdentifier: "open_conversation", sender: self)
 
         })
+         */
     }
 
     // MARK: - Table view data source

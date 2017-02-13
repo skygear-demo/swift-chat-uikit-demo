@@ -30,7 +30,7 @@ class DirectConversationsViewController: UsersViewController {
             completion(userConversation, nil)
             return
         }
-
+        /* MARK: Part 5.1
         chat.createDirectConversation(userID: userRecord.recordID.recordName,
                                       title: "",
                                       metadata: nil) { (c, err) in
@@ -44,6 +44,7 @@ class DirectConversationsViewController: UsersViewController {
                                             completion(userConversation, nil)
                                         }
         }
+         */
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

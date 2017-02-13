@@ -59,14 +59,18 @@ class MessagesViewController: JSQMessagesViewController {
         guard let userConversation = self.conversation else {
             return
         }
-
+        /* MARK: Part 8.1
         messageObserver = chat.subscribeToMessages(in: userConversation.conversation, handler: { (event, message) in
             print("Received message event")
         })
+        */
+        
+        /* MARK: Part 9.1
         typingObserver = chat.subscribeToTypingIndicator(in: userConversation.conversation, handler: { (indicator) in
             print("Receiving typing event")
             self.promptTypingIndicator(indicator)
         })
+        */
     }
 
     func unsubscribeFromNotifications() {
@@ -85,7 +89,7 @@ class MessagesViewController: JSQMessagesViewController {
         }
 
         var typingUserDisplayName: String?
-        
+        /* MARK: Part 9.2
         let typingUserIDs = indicator.typingUserIDs
         if typingUserIDs.count == 0 {
             // No one is typing.
@@ -104,7 +108,7 @@ class MessagesViewController: JSQMessagesViewController {
         } else {
             self.navigationItem.prompt = "Some people are typing..."
         }
-
+        */
         typingPromptTimer = Timer.scheduledTimer(withTimeInterval: 10.0,
                                        repeats: false,
                                        block: { (_) in
@@ -123,6 +127,8 @@ class MessagesViewController: JSQMessagesViewController {
             print("No conversation")
             return
         }
+
+        /* MARK: Part 13.1
         chat.fetchMessages(conversation: conversation.conversation,
                             limit: 100,
                             beforeTime: nil,
@@ -139,6 +145,7 @@ class MessagesViewController: JSQMessagesViewController {
                                     self.reloadViews()
                                 }
         })
+        */
     }
 
     func fetchAllParticipants() {
@@ -147,12 +154,15 @@ class MessagesViewController: JSQMessagesViewController {
         guard conversation != nil else {
             return
         }
+        
+        /* MARK: Part 11.1
         for recordName in (conversation?.conversation.participantIds)! {
             userRecordIDs.append(SKYRecordID(recordType: "user", name: recordName))
         }
-
+        */
         print("Fetching participants for the conversation: \(userRecordIDs)")
 
+        /* MARK: Part 11.2
         db?.fetchRecords(withIDs: userRecordIDs,
                          completionHandler: { (usermap, err) in
                             var newUsers: [String : SKYRecord] = [:]
@@ -168,6 +178,7 @@ class MessagesViewController: JSQMessagesViewController {
                             self.users = newUsers
                             self.reloadViews()
         }, perRecordErrorHandler: nil)
+        */
     }
 
     func isOutgoingSKYMessage(_ message: SKYMessage) -> Bool {
@@ -184,6 +195,7 @@ class MessagesViewController: JSQMessagesViewController {
     }
 
     func triggerTypingEvent(_ event: SKYChatTypingEvent) {
+        /* MARK: Part 7.1
         if event == lastTypingEvent {
             if lastTypingEventDate != nil && lastTypingEventDate!.timeIntervalSinceNow > -1 {
                 // Last event is published less than 1 second ago.
@@ -197,6 +209,7 @@ class MessagesViewController: JSQMessagesViewController {
         chat.sendTypingIndicator(event, in: (conversation?.conversation)!)
         lastTypingEvent = event
         lastTypingEventDate = Date.init()
+         */
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -285,6 +298,7 @@ class MessagesViewController: JSQMessagesViewController {
 
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
 
+        /* MARK: Part 4.1
         let message = SKYMessage()!
         message.body = text
         message.creatorUserRecordID = SKYContainer.default().currentUserRecordID
@@ -295,11 +309,10 @@ class MessagesViewController: JSQMessagesViewController {
                 }
 
                 self.messages[transientMessageIndex] = sentMessage
-//                let indexPath = IndexPath(index: transientMessageIndex)
-//                self.collectionView.reloadItems(at: [indexPath])
                 self.collectionView.reloadData()
             }
         })
+         */
         self.messages.append(message)
         self.finishSendingMessage(animated: true)
         triggerTypingEvent(.finished)
