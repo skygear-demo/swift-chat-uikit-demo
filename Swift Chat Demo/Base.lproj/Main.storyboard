@@ -31,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="1297" y="349"/>
         </scene>
-        <!--User Query View Controller-->
+        <!--Users-->
         <scene sceneID="unM-7P-XFK">
             <objects>
                 <viewController id="2I1-dW-Je0" customClass="UserQueryViewController" customModule="Swift_Chat_Demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -44,7 +44,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sA7-fq-lnn"/>
+                    <navigationItem key="navigationItem" title="Users" id="sA7-fq-lnn"/>
                     <connections>
                         <segue destination="v6u-ea-oVY" kind="show" identifier="ShowDirectConversation" id="zdW-ZN-O7R"/>
                     </connections>
@@ -407,7 +407,7 @@
             </objects>
             <point key="canvasLocation" x="5474" y="349"/>
         </scene>
-        <!--Conversation List View Controller-->
+        <!--Conversations-->
         <scene sceneID="qia-Kl-Mfi">
             <objects>
                 <viewController id="KUx-fs-4Ia" customClass="ConversationListViewController" customModule="Swift_Chat_Demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -420,7 +420,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DXz-o7-ufM"/>
+                    <navigationItem key="navigationItem" title="Conversations" id="DXz-o7-ufM"/>
                     <connections>
                         <segue destination="v6u-ea-oVY" kind="show" identifier="ShowGroupConversation" id="QWd-Cu-oIF"/>
                         <segue destination="7xa-RU-e9P" kind="presentation" identifier="ShowCreateConversation" id="kEk-Uu-9gV"/>

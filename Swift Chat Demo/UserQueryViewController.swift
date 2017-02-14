@@ -16,6 +16,10 @@ class UserQueryViewController: SKYChatParticipantListViewController {
 
     var selectedUserConversation: SKYUserConversation?
 
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.queryMethod = .ByName

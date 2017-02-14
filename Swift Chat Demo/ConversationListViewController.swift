@@ -21,7 +21,6 @@ class ConversationListViewController: SKYChatConversationListViewController {
         super.viewDidLoad()
 
         self.delegate = self
-        self.title = NSLocalizedString("Conversations", comment: "")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
