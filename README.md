@@ -38,6 +38,8 @@ is to sign up an account on [Skygear Portal](https://portal.skygear.io/). See
 To try out this demo:
 
 1. Clone this repository
+2. Run `pod install` (or `pod update`) to install dependency. Check out
+   [cocoapods](https://cocoapods.org/) if you haven't got pod installed.
 2. Open `Swift Chat Demo.xcworkspace` using Xcode (do not open with
    `.xcodeproj`)
 3. Find and open `AppDelegate.swift`
