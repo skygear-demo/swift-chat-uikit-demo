@@ -137,6 +137,7 @@ extension ConversationListViewController: ConversationDetailViewControllerDelega
                 self.selectedConversation = userConv.conversation
                 self.performSegue(withIdentifier: ShowGroupConversationSegueIdentifier,
                                   sender: self)
+                self.performQuery(callback: nil);
         }
     )
     }
