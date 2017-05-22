@@ -25,6 +25,11 @@ class ConversationListViewController: SKYChatConversationListViewController {
             barButtonSystemItem: .add,
             target: self,
             action: #selector(createConversationButtonDidTap(_:)))
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.SKYContainerDidChangeCurrentUser,
+                                               object: nil,
+                                               queue: OperationQueue.main) { (_) in
+                                                self.performQuery(callback: nil)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
