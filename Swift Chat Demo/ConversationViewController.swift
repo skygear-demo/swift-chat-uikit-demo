@@ -63,6 +63,15 @@ extension ConversationViewController: SKYChatConversationViewControllerDelegate 
 
         ChatHelper.shared.cacheUserRecords(participants)
     }
+    
+    func conversationViewController(_ controller: SKYChatConversationViewController, didFetchedMessages messages: [SKYMessage]) {
+        SVProgressHUD.dismiss()
+    }
+    
+    func startFetchingMessages(_ controller: SKYChatConversationViewController) {
+        SVProgressHUD.show()
+    }
+
 }
 
 extension ConversationViewController: ConversationDetailViewControllerDelegate {

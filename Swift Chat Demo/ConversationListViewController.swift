@@ -77,29 +77,12 @@ extension ConversationListViewController {
 extension ConversationListViewController: SKYChatConversationListViewControllerDelegate {
 
     func listViewController(_ controller: SKYChatConversationListViewController,
-                            didSelectConversation conversation: SKYConversation) {
-
-        SVProgressHUD.show()
-        self.skygear.chatExtension?.fetchUserConversation(
-            conversation: conversation, fetchLastMessage: false, completion: { (result, error) in
-                SVProgressHUD.dismiss()
-
-                guard error == nil else {
-                    SVProgressHUD.showError(withStatus: error!.localizedDescription)
-                    return
-                }
-
-                guard let userConv = result else {
-                    SVProgressHUD.showError(withStatus: "Cannot get conversation information")
-                    return
-                }
-
-                self.selectedConversation = conversation
-                self.selectedUserConversation = userConv
-                self.performSegue(withIdentifier: ShowGroupConversationSegueIdentifier,
-                                  sender: self)
-            }
-        )
+                            didSelectConversation conversation: SKYConversation,
+                            withUserConversation userConversation: SKYUserConversation) {
+        self.selectedConversation = conversation
+        self.selectedUserConversation = userConversation
+        self.performSegue(withIdentifier: ShowGroupConversationSegueIdentifier,
+                          sender: self)
     }
 }
 
