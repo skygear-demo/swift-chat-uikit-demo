@@ -23,18 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         self.skygear.configAddress("http://localhost:3001")
         self.skygear.configure(withAPIKey: "my_skygear_key")
-        self.skygear.registerDeviceCompletionHandler { (deviceID, error) in
-            guard error == nil else {
-                print("Got error when register device: \(error!.localizedDescription)")
-                return
-            }
-
-            if let id = deviceID {
-                print("Registered device with ID: \(id)")
-            } else {
-                print("Got nil device ID")
-            }
-        }
 
         let notificationCneter = UNUserNotificationCenter.current()
         notificationCneter.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
