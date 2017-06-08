@@ -25,19 +25,29 @@ PODS:
 DEPENDENCIES:
   - JSQMessagesViewController (~> 7.3.4)
   - SKYKit (~> 0.21.0)
-  - SKYKitChat (~> 0.0.2)
-  - SKYKitChat/UI (~> 0.0.2)
+  - SKYKitChat (from `https://github.com/SkygearIO/chat-SDK-iOS.git`, commit `50fce84`)
+  - SKYKitChat/UI (from `https://github.com/SkygearIO/chat-SDK-iOS.git`, commit `50fce84`)
   - SVProgressHUD (~> 2.1.0)
+
+EXTERNAL SOURCES:
+  SKYKitChat:
+    :commit: 50fce84
+    :git: https://github.com/SkygearIO/chat-SDK-iOS.git
+
+CHECKOUT OPTIONS:
+  SKYKitChat:
+    :commit: 50fce84
+    :git: https://github.com/SkygearIO/chat-SDK-iOS.git
 
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   SKYKit: 189ca397d45c08d9559d744c2ac0640a13b41072
-  SKYKitChat: 0ac860a968b2ccac672abd8933e4d52e05b942fb
+  SKYKitChat: d0a88388948240a934074ff46c60ff737a8fb862
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 89d46a17dfac50d07c75a48e843bca71170c898b
+PODFILE CHECKSUM: dcfc0a751f3e89d8f42e628f42d550181a1bccc2
 
 COCOAPODS: 1.2.0
