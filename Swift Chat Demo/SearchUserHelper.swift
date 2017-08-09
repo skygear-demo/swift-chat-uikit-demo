@@ -28,27 +28,27 @@ extension UIViewController {
     }
 
     func chat_startSearchUserFlow(username: String, completion: ((_ record: SKYRecord?) -> Void)?) {
-        let container = SKYContainer.default()!
+        let container = SKYContainer.default()
 
         SVProgressHUD.show()
-        container.queryUsers(byUsernames: [username]) { (records, err) in
+        let predicate = NSPredicate(format: "username = %@", username)
+        let query = SKYQuery(recordType: "user", predicate: predicate)
+        SKYContainer.default().publicCloudDatabase.perform(query, completionHandler: { (result, error) in
             SVProgressHUD.dismiss()
-            if let error = err {
-                let alert = UIAlertController(title: "Cannot Find User", message: error.localizedDescription, preferredStyle: .alert)
+            if let err = error {
+                let alert = UIAlertController(title: "Cannot Find User", message: error?.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 completion?(nil)
-                return
-            }
-
-            guard let foundUser = records?.first else {
+                return            }
+            
+            if let foundUser = result?.first as? SKYRecord {
+                ChatHelper.shared.cacheUserRecord(foundUser)
+                completion?(foundUser)
+            } else {
                 SVProgressHUD.showError(withStatus: "User Not Found")
                 completion?(nil)
-                return
             }
-
-            ChatHelper.shared.cacheUserRecord(foundUser)
-            completion?(foundUser)
-        }
+        })
     }
 }

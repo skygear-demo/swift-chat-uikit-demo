@@ -11,7 +11,7 @@ import SKYKit
 
 class RootViewController: UITabBarController, LoginViewControllerDelegate {
 
-    var container = SKYContainer.default()!
+    var container = SKYContainer.default()
     var overlayView: UIView? = nil
     let helper = ChatHelper.shared
 
@@ -76,7 +76,7 @@ class RootViewController: UITabBarController, LoginViewControllerDelegate {
         loginVC?.delegate = self
     }
 
-    func loginViewController(_ viewController: LoginViewController, didFinishWithUser user: SKYUser) {
+    func loginViewController(_ viewController: LoginViewController, didFinishWithUser user: SKYRecord) {
         self.dismiss(animated: true, completion: nil)
     }
 

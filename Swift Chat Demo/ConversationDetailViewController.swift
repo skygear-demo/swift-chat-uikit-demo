@@ -243,7 +243,7 @@ extension ConversationDetailViewController {
             let isDistinctByParticipants = self.conversation?.isDistinctByParticipants ?? false
             return (self.allowEditing &&
                     !isDistinctByParticipants &&
-                    participantID != SKYContainer.default().currentUserRecordID!)
+                    participantID != SKYContainer.default().auth.currentUserRecordID!)
         default:
             return false
         }
@@ -275,7 +275,7 @@ extension ConversationDetailViewController {
             if indexPath.row == self.participantIDs.count {
                 // Add participant cell
                 let vc = SKYChatParticipantListViewController.create()
-                vc.queryMethod = .ByName
+                vc.queryMethod = .byName
                 vc.delegate = self
 
                 self.present(vc, animated: true, completion: nil)
