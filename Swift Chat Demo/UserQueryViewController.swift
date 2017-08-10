@@ -14,7 +14,7 @@ let ShowDirectConversationSegueIdentifier: String = "ShowDirectConversation"
 
 class UserQueryViewController: SKYChatParticipantListViewController {
 
-    var selectedUserConversation: SKYUserConversation?
+    var selectedConversation: SKYConversation?
 
     override var prefersStatusBarHidden: Bool {
         return false
@@ -22,10 +22,10 @@ class UserQueryViewController: SKYChatParticipantListViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.queryMethod = .ByName
+        self.queryMethod = .byName
         self.delegate = self
 
-        if let userID = self.skygear.currentUser?.userID {
+        if let userID = self.skygear.auth.currentUserRecordID {
             self.participantScope = SKYQuery(recordType: "user",
                                              predicate: NSPredicate(format: "_id != %@", userID))
         }
@@ -34,7 +34,7 @@ class UserQueryViewController: SKYChatParticipantListViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.selectedUserConversation = nil
+        self.selectedConversation = nil
         self.searchBar?.resignFirstResponder()
     }
 
@@ -54,7 +54,7 @@ class UserQueryViewController: SKYChatParticipantListViewController {
         switch segueID {
         case ShowDirectConversationSegueIdentifier:
             if let vc = segue.destination as? ConversationViewController {
-                vc.userConversation = self.selectedUserConversation
+                vc.conversation = self.selectedConversation
             }
         default:
             break
@@ -84,12 +84,12 @@ extension UserQueryViewController: SKYChatParticipantListViewControllerDelegate 
                     return
                 }
 
-                guard let userConv = result else {
+                guard let conversation = result else {
                     SVProgressHUD.showError(withStatus: "Failed to create conversation")
                     return
                 }
 
-                self.selectedUserConversation = userConv
+                self.selectedConversation = conversation
                 self.performSegue(withIdentifier: ShowDirectConversationSegueIdentifier,
                                   sender: self)
             }

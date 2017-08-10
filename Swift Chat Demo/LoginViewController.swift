@@ -10,7 +10,7 @@ import UIKit
 import SKYKit
 
 protocol LoginViewControllerDelegate {
-    func loginViewController(_ viewController: LoginViewController, didFinishWithUser user: SKYUser)
+    func loginViewController(_ viewController: LoginViewController, didFinishWithUser user: SKYRecord)
 }
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     var container: SKYContainer {
-        return SKYContainer.default()!
+        return SKYContainer.default()
     }
 
     @IBAction func toggleFlow(_ sender: Any) {
@@ -68,19 +68,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
 
         if isNewUser {
-            container.signup(withUsername: username,
+            container.auth.signup(withUsername: username,
                              password: password) { (user, error) in
                                 self.handleLoginResponse(user: user, error: error)
             }
         } else {
-            container.login(withUsername: username,
+            container.auth.login(withUsername: username,
                             password: password) { (user, error) in
                                 self.handleLoginResponse(user: user, error: error)
             }
         }
     }
 
-    func handleLoginResponse(user: SKYUser?, error: Error?) {
+    func handleLoginResponse(user: SKYRecord?, error: Error?) {
         if error != nil {
             self.presentLoginAlert(error: error!)
             return
@@ -89,8 +89,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let theUser = user {
             if isNewUser {
                 let userRecord = SKYRecord(recordType: "user",
-                                           name: theUser.userID,
-                                           data: ["name": theUser.username])
+                                           name: theUser.recordID.recordName,
+                                           data: ["name": theUser.value(forKey: "username")])
                 container.publicCloudDatabase.save(userRecord, completion: { (savedUserRecord, _) in
                     ChatHelper.shared.cacheUserRecord(savedUserRecord)
                     self.delegate?.loginViewController(self, didFinishWithUser: theUser)

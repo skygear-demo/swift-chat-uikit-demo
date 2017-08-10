@@ -30,7 +30,7 @@ class SettingsViewController: UITableViewController {
                                           message: "This will remove account information from this device.",
                                           preferredStyle: .actionSheet)
             let logoutAction = UIAlertAction(title: "Logout", style: .destructive, handler: { (action) in
-                SKYContainer.default().logout(completionHandler: { (_, _) in
+                SKYContainer.default().auth.logout(completionHandler: { (_, _) in
 
                 })
             })

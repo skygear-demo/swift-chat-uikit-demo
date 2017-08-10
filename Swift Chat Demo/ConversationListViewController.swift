@@ -15,7 +15,6 @@ let ShowCreateConversationSegueIdentifier: String = "ShowCreateConversation"
 class ConversationListViewController: SKYChatConversationListViewController {
 
     var selectedConversation: SKYConversation?
-    var selectedUserConversation: SKYUserConversation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +42,6 @@ class ConversationListViewController: SKYChatConversationListViewController {
         switch segueID {
         case ShowGroupConversationSegueIdentifier:
             if let vc = segue.destination as? ConversationViewController {
-                vc.userConversation = self.selectedUserConversation
                 vc.conversation = self.selectedConversation
             }
         case ShowCreateConversationSegueIdentifier:
@@ -51,8 +49,8 @@ class ConversationListViewController: SKYChatConversationListViewController {
                 let vc = nc.viewControllers.first as? ConversationDetailViewController {
 
                 vc.title = NSLocalizedString("Create Conversation", comment: "")
-                vc.participantIDs = [self.skygear.currentUserRecordID]
-                vc.adminIDs = [self.skygear.currentUserRecordID]
+                vc.participantIDs = [self.skygear.auth.currentUserRecordID]
+                vc.adminIDs = [self.skygear.auth.currentUserRecordID]
                 vc.allowLeaving = false
                 vc.showCancelButton = true
                 vc.delegate = self
@@ -77,10 +75,8 @@ extension ConversationListViewController {
 extension ConversationListViewController: SKYChatConversationListViewControllerDelegate {
 
     func listViewController(_ controller: SKYChatConversationListViewController,
-                            didSelectConversation conversation: SKYConversation,
-                            withUserConversation userConversation: SKYUserConversation) {
+                            didSelectConversation conversation: SKYConversation) {
         self.selectedConversation = conversation
-        self.selectedUserConversation = userConversation
         self.performSegue(withIdentifier: ShowGroupConversationSegueIdentifier,
                           sender: self)
     }
@@ -116,13 +112,12 @@ extension ConversationListViewController: ConversationDetailViewControllerDelega
                     return
                 }
 
-                guard let userConv = result else {
+                guard let conversation = result else {
                     SVProgressHUD.showError(withStatus: "Failed to create conversation")
                     return
                 }
 
-                self.selectedUserConversation = userConv
-                self.selectedConversation = userConv.conversation
+                self.selectedConversation = conversation
                 self.performSegue(withIdentifier: ShowGroupConversationSegueIdentifier,
                                   sender: self)
                 self.performQuery(callback: nil);

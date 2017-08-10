@@ -12,7 +12,7 @@ import SKYKit
 class ChatHelper: NSObject {
 
     private static let sharedHelper = ChatHelper()
-    private var container = SKYContainer.default()!
+    private var container = SKYContainer.default()
     private var userRecords: [String: SKYRecord] = [:]
 
     class var shared: ChatHelper {
@@ -32,14 +32,14 @@ class ChatHelper: NSObject {
     }
 
     var isLoggedIn: Bool {
-        return container.currentUser != nil
+        return container.auth.currentUser != nil
     }
 
     var currentUserRecord: SKYRecord? {
         guard isLoggedIn else {
             return nil
         }
-        return userRecords[container.currentUserRecordID]
+        return userRecords[container.auth.currentUserRecordID]
     }
 
     func userRecord(userID: String) -> SKYRecord? {
@@ -62,7 +62,7 @@ class ChatHelper: NSObject {
             return
         }
 
-        fetchUserRecords(userIDs: [container.currentUserRecordID]) { (records, _) in
+        fetchUserRecords(userIDs: [container.auth.currentUserRecordID]) { (records, _) in
             completion?(records?.first)
         }
     }
@@ -72,7 +72,7 @@ class ChatHelper: NSObject {
             return SKYRecordID(recordType: "user", name: value)
         }
 
-        let db = SKYContainer.default().publicCloudDatabase!
+        let db = SKYContainer.default().publicCloudDatabase
         db.fetchRecords(withIDs: recordIDs, completionHandler: { (usermap, error) in
             if error != nil {
                 completion?(nil, error)
@@ -111,7 +111,7 @@ class ChatHelper: NSObject {
 
     func generateConversationDefaultTitle(participantIDs: [String], includeCurrentUserName: Bool) -> String {
         let participants = participantIDs.filter { (userID) -> Bool in
-            return userID != SKYContainer.default().currentUserRecordID || includeCurrentUserName
+            return userID != SKYContainer.default().auth.currentUserRecordID || includeCurrentUserName
         }
         let names = participants.flatMap { (userID) -> SKYRecord? in
             return ChatHelper.shared.userRecord(userID: userID)

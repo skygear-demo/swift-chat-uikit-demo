@@ -41,7 +41,7 @@ class ChangeNameViewController: UIViewController, UITextFieldDelegate {
         }
 
         userRecord.setValue(nameField.text, forKey: "name")
-        container?.publicCloudDatabase.save(userRecord, completion: { (savedUserRecord, error) in
+        container.publicCloudDatabase.save(userRecord, completion: { (savedUserRecord, error) in
             if let theError = error {
                 let alert = UIAlertController(title: "Unable to Save",
                                   message: theError.localizedDescription,
