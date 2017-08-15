@@ -10,7 +10,7 @@ target 'Swift Chat Demo' do
   pod 'SVProgressHUD', '~> 2.1.0'
 
   pod 'SKYKit/Core', :git => 'https://github.com/SkygearIO/skygear-SDK-iOS.git', :tag => '1.1.0'
-  pod 'SKYKitChat', :git => 'https://github.com/SkygearIO/chat-SDK-iOS.git', :commit => 'ae84ada0'
-  pod 'SKYKitChat/UI', :git => 'https://github.com/SkygearIO/chat-SDK-iOS.git', :commit => 'ae84ada0'
+  pod 'SKYKitChat', :git => 'https://github.com/Steven-Chan/chat-SDK-iOS.git', :commit => '9453da2'
+  pod 'SKYKitChat/UI', :git => 'https://github.com/Steven-Chan/chat-SDK-iOS.git', :commit => '9453da2'
 
 end
