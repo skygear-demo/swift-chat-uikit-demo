@@ -36,7 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return
             }
 
-            application.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
         }
 
         return true
