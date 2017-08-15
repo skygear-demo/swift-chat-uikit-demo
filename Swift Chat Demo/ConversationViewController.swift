@@ -38,7 +38,7 @@ class ConversationViewController: SKYChatConversationViewController {
                 vc.conversation = self.conversation
                 vc.delegate = self
                 vc.allowEditing =
-                    self.conversation!.adminIds.contains(self.skygear.auth.currentUserRecordID)
+                    self.conversation!.adminIds.contains(self.skygear.auth.currentUserRecordID!)
                 vc.allowAddingParticipants = !(self.conversation!.isDistinctByParticipants)
             }
         default:

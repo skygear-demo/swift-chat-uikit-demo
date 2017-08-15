@@ -39,7 +39,7 @@ class ChatHelper: NSObject {
         guard isLoggedIn else {
             return nil
         }
-        return userRecords[container.auth.currentUserRecordID]
+        return userRecords[container.auth.currentUserRecordID!]
     }
 
     func userRecord(userID: String) -> SKYRecord? {
@@ -62,7 +62,7 @@ class ChatHelper: NSObject {
             return
         }
 
-        fetchUserRecords(userIDs: [container.auth.currentUserRecordID]) { (records, _) in
+        fetchUserRecords(userIDs: [container.auth.currentUserRecordID!]) { (records, _) in
             completion?(records?.first)
         }
     }
@@ -73,7 +73,7 @@ class ChatHelper: NSObject {
         }
 
         let db = SKYContainer.default().publicCloudDatabase
-        db.fetchRecords(withIDs: recordIDs, completionHandler: { (usermap, error) in
+        db.fetchRecords(with: recordIDs, completionHandler: { (usermap, error) in
             if error != nil {
                 completion?(nil, error)
                 return

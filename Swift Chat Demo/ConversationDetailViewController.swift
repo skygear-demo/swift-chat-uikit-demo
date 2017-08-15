@@ -311,16 +311,14 @@ extension ConversationDetailViewController: SKYChatParticipantListViewController
         self.dismiss(animated: true, completion: nil)
         ChatHelper.shared.cacheUserRecord(participant)
 
-        if let participantID = participant.recordID.recordName {
-            var participantSet = Set(self.participantIDs)
-            let (inserted, _) = participantSet.insert(participantID)
+        var participantSet = Set(self.participantIDs)
+        let (inserted, _) = participantSet.insert(participant.recordID.recordName)
+        
+        if inserted {
+            self.participantIDs = Array(participantSet)
+            self.edited = true
 
-            if inserted {
-                self.participantIDs = Array(participantSet)
-                self.edited = true
-
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
 }

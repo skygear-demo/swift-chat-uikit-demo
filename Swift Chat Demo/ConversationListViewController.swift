@@ -49,8 +49,8 @@ class ConversationListViewController: SKYChatConversationListViewController {
                 let vc = nc.viewControllers.first as? ConversationDetailViewController {
 
                 vc.title = NSLocalizedString("Create Conversation", comment: "")
-                vc.participantIDs = [self.skygear.auth.currentUserRecordID]
-                vc.adminIDs = [self.skygear.auth.currentUserRecordID]
+                vc.participantIDs = [self.skygear.auth.currentUserRecordID!]
+                vc.adminIDs = [self.skygear.auth.currentUserRecordID!]
                 vc.allowLeaving = false
                 vc.showCancelButton = true
                 vc.delegate = self
